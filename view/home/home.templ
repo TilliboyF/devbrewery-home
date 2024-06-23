@@ -1,0 +1,43 @@
+package home
+
+import "github.com/TilliboyF/devbrewery-home/view/layout"
+import "github.com/TilliboyF/devbrewery-home/view/navbar"
+
+type Content struct {
+	Title       string
+	Description string
+	Ref         string
+}
+
+templ Index() {
+	@layout.App() {
+		@navbar.Navbar()
+		<div class="flex flex-col lg:flex-row space-y-4 lg:space-y-0 items-center justify-evenly my-10">
+			@ContentCard(Content{
+				Title:       "Htmx-Examples",
+				Description: "In the Htmx-Examples you can find several examples for Website components build with Htmx and how it could be done, to give the user more of the experience of a single page application even though it's a server side rendered application.",
+				Ref:         "https://htmx-examples.devbrewery.coffee"})
+			@ContentCard(Content{
+				Title:       "Coming soon",
+				Description: "tbd",
+				Ref:         "",
+			})
+		</div>
+	}
+}
+
+templ ContentCard(content Content) {
+	<div class="card bg-primary text-primary-content w-96 h-96">
+		<div class="card-body">
+			<h2 class="card-title text-6xl">{ content.Title }</h2>
+			<p class="flex-grow border-t-2 border-base-100">{ content.Description }</p>
+			<div class="card-actions justify-end">
+				if len(content.Ref) > 0 {
+					<a href={ templ.SafeURL(content.Ref) } class="btn">Go to site</a>
+				} else {
+					<a disabled class="btn btn-disabled">Go to site</a>
+				}
+			</div>
+		</div>
+	</div>
+}
