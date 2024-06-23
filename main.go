@@ -20,6 +20,7 @@ func main() {
 	r.Use(middleware.Logger)
 
 	r.Handle("/public/*", http.StripPrefix("/public/", http.FileServer(http.Dir("public"))))
+	r.Handle("/assets/*", http.StripPrefix("/assets", http.FileServer(http.Dir("assets"))))
 
 	r.Get("/", handler.MakeHandler(handler.HandleGetHome))
 
