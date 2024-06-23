@@ -23,7 +23,7 @@ func main() {
 
 	r.Get("/", handler.MakeHandler(handler.HandleGetHome))
 
-	slog.Info("Server running on port 8080")
+	slog.Info("Server running on port 8000")
 
 	http.ListenAndServe(":8000", r)
 }
