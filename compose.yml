@@ -1,7 +1,13 @@
 services:
-  server:
+  home:
     build: .
-    ports: 
-    - "8000:8000"
+    expose:
+      - "8000"
     env_file:
      - .env
+    networks:
+      - sharednetwork
+
+networks:
+  sharednetwork:
+    external: true
