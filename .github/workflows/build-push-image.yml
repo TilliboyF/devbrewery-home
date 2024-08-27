@@ -6,13 +6,17 @@ jobs:
     steps:
       - name: Get Code
         uses: actions/checkout@v4
-      - name: build image
-        run: docker build -t registry.devbrewery.coffee/devbrewery-home
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
       - name: Login to registry
         uses: docker/login-action@v3
         with:
           registry: registry.devbrewery.coffee
           username: ${{ secrets.REGISTRYUSER }}
           password: ${{ secrets.REGISTRYPASS }}
-      - name: push image
-        run: docker push registry.devbrewery.coffee/devbrewery-home
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: registry.devbrewery.coffee/devbrewery-home
