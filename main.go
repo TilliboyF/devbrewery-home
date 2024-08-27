@@ -7,13 +7,9 @@ import (
 	"github.com/TilliboyF/devbrewery-home/handler"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/joho/godotenv"
 )
 
 func main() {
-	if err := godotenv.Load(); nil != err {
-		slog.Error("Can't load .env", err)
-	}
 
 	r := chi.NewRouter()
 
