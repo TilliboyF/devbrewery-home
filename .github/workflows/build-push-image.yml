@@ -1,0 +1,12 @@
+name: Docker Image CI
+on: [workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to registry
+        uses: docker/login-action@v3
+        with:
+          registry: registry.devbrewery.coffee
+          username: ${{ secrets.registry-user }}
+          password: ${{ secrets.registry-password }}
